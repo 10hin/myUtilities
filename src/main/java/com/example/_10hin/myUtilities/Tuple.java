@@ -20,4 +20,8 @@ public interface Tuple<CAR, CDR> {
 	 */
 	CDR getCdr();
 
+	static <CAR, CDR> Tuple<CAR, CDR> of(CAR car, CDR cdr) {
+		return TupleImpl.of(car, cdr);
+	}
+
 }

@@ -15,7 +15,7 @@ public class TupleImpl<CAR, CDR> implements Tuple<CAR, CDR> {
 		return this.cdr;
 	}
 
-	public static <CAR, CDR> Tuple<CAR, CDR> of(CAR car, CDR cdr) {
+	public static <CAR, CDR> TupleImpl<CAR, CDR> of(CAR car, CDR cdr) {
 		return new TupleImpl<>(car, cdr);
 	}
 
