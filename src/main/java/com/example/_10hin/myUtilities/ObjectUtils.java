@@ -14,6 +14,8 @@ import java.util.Objects;
 import java.util.Queue;
 import java.util.RandomAccess;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
@@ -84,7 +86,7 @@ public class ObjectUtils {
             collector = Collectors.toCollection(NoneButDeque::new);
             break;
         default:
-             throw new InternalError("impossible local variable value");
+             throw new InternalError("impossible value for local variable");
         }
         return convertStream.collect(collector);
     }
@@ -590,7 +592,14 @@ public class ObjectUtils {
         if (set == null) {
             return null;
         }
-        return set.stream().map(converter).collect(Collectors.toSet());
+        Stream<R> convertStream = set.stream().map(converter);
+        Collector<R, ?, Set<R>> collector;
+        if (set instanceof SortedSet) {
+            collector = Collectors.toCollection(TreeSet::new);
+        } else {
+            collector = Collectors.toCollection(LinkedHashSet::new);
+        }
+        return convertStream.collect(collector);
     }
 
     public static <T, R> Collection<R> collectionConvert(Collection<T> collection, Function<T, R> converter) {
