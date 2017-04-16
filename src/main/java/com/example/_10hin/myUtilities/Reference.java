@@ -31,9 +31,13 @@ public class Reference<T> {
 
     @Override
     public String toString() {
-        return new StringBuilder()
-            .append("Reference to ")
-            .append(Integer.toHexString() + "@[" + String.valueOf(this.target) + "]")
+        return new StringBuilder() //
+            .append("Reference to ") //
+            .append(Integer.toHexString(System.identityHashCode(this.object))) //
+            .append("@[") //
+            .append(this.object) //
+            .append("]") //
+            .toString();
     }
 
 }
