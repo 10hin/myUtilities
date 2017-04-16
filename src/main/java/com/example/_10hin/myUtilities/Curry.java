@@ -36,11 +36,7 @@ public class Curry {
         return (t1) -> ((t2) -> binaryOperator.apply(t1, t2));
     }
 
-    public static <T> Function<T, UnaryOperator<T>> toUnaryOperator(BinaryOperator<T> binaryOperator) {
-        return (t1) -> ((t2) -> binaryOperator.apply(t1, t2));
-    }
-
-    public static <T, U> Function<T, Function<U, Supplier<Boolean>>> toSupplier(BiPredicate<T, U> biPredicate) {
+   public static <T, U> Function<T, Function<U, Supplier<Boolean>>> toSupplier(BiPredicate<T, U> biPredicate) {
         return (t) -> ((u) -> (() -> biPredicate.test(t, u)));
     }
 
@@ -50,10 +46,6 @@ public class Curry {
 
     public static Function<Double, Function<Double, Supplier<Double>>> toSupplier(DoubleBinaryOperator binaryOperator) {
         return (d1) -> ((d2) -> (() -> binaryOperator.applyAsDouble(d1, d2)));
-    }
-
-    public static Function<Double, UnaryOperator<Double>> toDoubleFunction(DoubleBinaryOperator binaryOperator) {
-        return (d1) -> ((d2) -> binaryOperator.applyAsDouble(d1, d2));
     }
 
     public static <R> Function<Double, Supplier<R>> toSupplier(DoubleFunction<R> doubleFunction) {
@@ -68,24 +60,12 @@ public class Curry {
         return (d) -> (() -> doubleToIntFunction.applyAsInt(d));
     }
 
-    public static Function<Double, Integer> toFunction(DoubleToIntFunction doubleToIntFunction) {
-        return (d) -> doubleToIntFunction.applyAsInt(d);
-    }
-
     public static Function<Double, Supplier<Long>> toSpplier(DoubleToLongFunction doubleToLongFunction) {
         return (d) -> (() -> doubleToLongFunction.applyAsLong(d));
     }
 
-    public static Function<Double, Long> toFunction(DoubleToLongFunction doubleToLongFunction) {
-        return (d) -> doubleToLongFunction.applyAsLong(d);
-    }
-
     public static Function<Double, Supplier<Double>> toSupplier(DoubleUnaryOperator doubleUnaryOperator) {
         return (d) -> (() -> doubleUnaryOperator.applyAsDouble(d));
-    }
-
-    public static Function<Double, Double> toFunction(DoubleUnaryOperator doubleUnaryOperator) {
-        return (d) -> doubleUnaryOperator.applyAsDouble(d);
     }
 
     public static Function<Integer, Function<Integer, Supplier<Integer>>> toSupplier(IntBinaryOperator intBinaryOperator) {
