@@ -32,9 +32,9 @@ public class Reference<T> {
     @Override
     public String toString() {
         return new StringBuilder() //
-            .append("Reference to ") //
+            .append("Reference @") //
             .append(Integer.toHexString(System.identityHashCode(this.object))) //
-            .append("@[") //
+            .append("[") //
             .append(this.object) //
             .append("]") //
             .toString();
