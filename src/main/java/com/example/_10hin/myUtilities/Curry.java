@@ -12,7 +12,6 @@ import java.util.function.DoubleUnaryOperator;
 import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
 import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
 
 public class Curry {
 
